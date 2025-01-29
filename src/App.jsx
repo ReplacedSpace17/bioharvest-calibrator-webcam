@@ -11,7 +11,7 @@ function App() {
     // Solicitar acceso a la cámara
     const getWebcam = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { width: window.innerWidth, height: window.innerHeight } });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
@@ -33,8 +33,7 @@ function App() {
 
   return (
     <>
-      
-      {/* Video de la webcam */}
+      {/* Contenedor del video y overlay */}
       <div className="webcam-container">
         <video ref={videoRef} autoPlay playsInline muted className="webcam"></video>
         <div className="overlay-box"></div>
